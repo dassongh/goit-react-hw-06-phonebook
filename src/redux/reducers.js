@@ -3,12 +3,7 @@ import { addContact, removeContact, changeFilter } from './actions';
 
 const items = createReducer([], {
   [addContact.type]: (state, { payload }) => [...state, payload],
-  [removeContact.type]: (state, { payload }) => {
-    const removingContact = state.find(contact => contact.name === payload);
-    state.splice(state.indexOf(removingContact), 1);
-
-    return [...state];
-  },
+  [removeContact.type]: (state, { payload }) => state.filter(el => el.name !== payload),
 });
 
 const filter = createReducer('', {
